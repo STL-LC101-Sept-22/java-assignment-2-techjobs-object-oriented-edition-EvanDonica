@@ -1,6 +1,8 @@
 package org.launchcode.techjobs.oo;
 
 import java.util.Objects;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Job {
 
@@ -89,5 +91,31 @@ public class Job {
 
     public void setCoreCompetency(CoreCompetency coreCompetency) {
         this.coreCompetency = coreCompetency;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        HashMap<String, String> job = new HashMap<>();
+        job.put("ID: ", String.valueOf(id));
+        job.put("Name: ", name);
+        job.put("Employer: ", employer.toString());
+        job.put("Location: ", location.toString());
+        job.put("Position Type: ",positionType.toString());
+        job.put("Core Competency:",coreCompetency.toString());
+
+        String finalString = "";
+
+        for (Map.Entry<String, String> category : job.entrySet()){
+            if(category.getValue() == ""){
+                finalString += "\n"+category.getKey()+"Data not available";
+            }else{
+                finalString += "\n"+category.getKey()+category.getValue();
+            }
+        }
+        return finalString+"\n";
     }
 }
