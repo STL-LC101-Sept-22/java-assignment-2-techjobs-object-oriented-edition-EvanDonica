@@ -1,5 +1,6 @@
 package org.launchcode.techjobs.oo.test;
 
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -16,22 +17,35 @@ public class JobTest {
     Job secondTestJob;
     Job thirdTestJob;
     Job copyJob;
+
     @Before
     public void createJobObject(){
         testJob = new Job("Software Engineer",new Employer("MasterCard"),new Location(""),new PositionType("Software Development"), new CoreCompetency("Google"));
         secondTestJob = new Job("Special Education Teacher",new Employer("Premier Charter School"),new Location("St.Louis"),new PositionType("Teacher"), new CoreCompetency("patience"));
         thirdTestJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        copyJob = new Job("Software Engineer",new Employer("MasterCard"),new Location("Kansas City"),new PositionType("Software Development"), new CoreCompetency("Google"));
+        copyJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+    }
+    @Test
+    public void testToStringHandlesEmptyField(){
+
+        String testJobString = "\n" +
+                "ID: "+ testJob.getId()+"\n"+
+                "Name: Software Engineer\n" +
+                "Employer: MasterCard\n" +
+                "Location: Data not available\n" +
+                "Position Type: Software Development\n" +
+                "Core Competency: Google\n";
+        assertEquals(testJob.toString(),testJobString);
     }
     @Test
     public void testToStringStartsAndEndsWithNewLine (){
-        char firstChar = testJob.toString().charAt(0);
-        char lastChar = testJob.toString().charAt(testJob.toString().length()-1);
-        assertEquals(firstChar, '\n');
-        assertEquals(lastChar, '\n');
+        assertEquals(testJob.toString().charAt(0), '\n');
+        assertEquals(testJob.toString().charAt(testJob.toString().length()-1), '\n');
     }
     @Test
     public void testSettingJobId(){
+        testJob = new Job("Software Engineer",new Employer("MasterCard"),new Location(""),new PositionType("Software Development"), new CoreCompetency("Google"));
+        secondTestJob = new Job("Special Education Teacher",new Employer("Premier Charter School"),new Location("St.Louis"),new PositionType("Teacher"), new CoreCompetency("patience"));
         assertNotEquals(testJob.getId(),secondTestJob.getId());
     }
 
@@ -52,7 +66,21 @@ public class JobTest {
 
     @Test
     public void testJobsForEquality(){
-        assertFalse(testJob.equals(copyJob));
+        assertFalse(thirdTestJob.equals(copyJob));
+    }
+
+    @Test
+    public void testToStringContainsCorrectLabelsAndData(){
+        String jobString =
+                "\n" +
+                "ID: "+ testJob.getId()+"\n" +
+                "Name: Software Engineer\n" +
+                "Employer: MasterCard\n" +
+                "Location: Data not available\n" +
+                "Position Type: Software Development\n" +
+                "Core Competency: Google\n";
+
+        assertEquals(jobString, testJob.toString());
     }
 
 }
