@@ -1,5 +1,6 @@
 package org.launchcode.techjobs.oo;
 
+import java.util.LinkedHashMap;
 import java.util.Objects;
 import java.util.HashMap;
 import java.util.Map;
@@ -99,13 +100,13 @@ public class Job {
 
     @Override
     public String toString() {
-        HashMap<String, String> job = new HashMap<>();
+        LinkedHashMap<String, String> job = new LinkedHashMap<>();
         job.put("ID: ", String.valueOf(id));
         job.put("Name: ", name);
         job.put("Employer: ", employer.toString());
         job.put("Location: ", location.toString());
         job.put("Position Type: ",positionType.toString());
-        job.put("Core Competency:",coreCompetency.toString());
+        job.put("Core Competency: ",coreCompetency.toString());
 
         String finalString = "";
 
