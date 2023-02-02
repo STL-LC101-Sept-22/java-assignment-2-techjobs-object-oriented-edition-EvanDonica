@@ -27,20 +27,13 @@ public class JobTest {
     }
     @Test
     public void testToStringHandlesEmptyField(){
-
-        String testJobString = "\n" +
-                "ID: "+ testJob.getId()+"\n"+
-                "Name: Software Engineer\n" +
-                "Employer: MasterCard\n" +
-                "Location: Data not available\n" +
-                "Position Type: Software Development\n" +
-                "Core Competency: Google\n";
-        assertEquals(testJob.toString(),testJobString);
+        assertEquals(testJob.toString(),String.format("\nID: %d\nName: Software Engineer\nEmployer: MasterCard\nLocation: Data not available\nPosition Type: Software Development\nCore Competency: Google\n", testJob.getId()));
     }
     @Test
     public void testToStringStartsAndEndsWithNewLine (){
-        assertEquals(testJob.toString().charAt(0), '\n');
-        assertEquals(testJob.toString().charAt(testJob.toString().length()-1), '\n');
+        String job = testJob.toString();
+        assertEquals(job.charAt(0), '\n');
+        assertEquals(job.charAt(job.length()-1), '\n');
     }
     @Test
     public void testSettingJobId(){
@@ -73,14 +66,14 @@ public class JobTest {
     public void testToStringContainsCorrectLabelsAndData(){
         String jobString =
                 "\n" +
-                "ID: "+ testJob.getId()+"\n" +
-                "Name: Software Engineer\n" +
-                "Employer: MasterCard\n" +
-                "Location: Data not available\n" +
-                "Position Type: Software Development\n" +
-                "Core Competency: Google\n";
+                "ID: "+ secondTestJob.getId()+"\n" +
+                "Name: "+secondTestJob.getName()+"\n" +
+                "Employer: "+secondTestJob.getEmployer()+"\n" +
+                "Location: "+secondTestJob.getLocation()+"\n" +
+                "Position Type: "+secondTestJob.getPositionType()+"\n" +
+                "Core Competency: "+secondTestJob.getCoreCompetency()+"\n";
 
-        assertEquals(jobString, testJob.toString());
+        assertEquals(jobString, secondTestJob.toString());
     }
 
 }
