@@ -8,23 +8,17 @@ import org.launchcode.techjobs.oo.*;
 import static org.junit.Assert.*;
 import org.junit.Before;
 
+
 /**
  * Created by LaunchCode
  */
 @RunWith(JUnit4.class)
 public class JobTest {
-    Job testJob;
-    Job secondTestJob;
-    Job thirdTestJob;
-    Job copyJob;
+    Job testJob = new Job("Software Engineer",new Employer("MasterCard"),new Location(""),new PositionType("Software Development"), new CoreCompetency("Google"));
+    Job secondTestJob = new Job("Special Education Teacher",new Employer("Premier Charter School"),new Location("St.Louis"),new PositionType("Teacher"), new CoreCompetency("patience"));
+    Job thirdTestJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+    Job copyJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
-    @Before
-    public void createJobObject(){
-        testJob = new Job("Software Engineer",new Employer("MasterCard"),new Location(""),new PositionType("Software Development"), new CoreCompetency("Google"));
-        secondTestJob = new Job("Special Education Teacher",new Employer("Premier Charter School"),new Location("St.Louis"),new PositionType("Teacher"), new CoreCompetency("patience"));
-        thirdTestJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        copyJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-    }
     @Test
     public void testToStringHandlesEmptyField(){
         assertEquals(testJob.toString(),String.format("\nID: %d\nName: Software Engineer\nEmployer: MasterCard\nLocation: Data not available\nPosition Type: Software Development\nCore Competency: Google\n", testJob.getId()));
@@ -44,6 +38,9 @@ public class JobTest {
 
     @Test
     public void testJobConstructorSetsAllFields(){
+        assertTrue(thirdTestJob.getName() instanceof String);
+        assertEquals(thirdTestJob.getName(),"Product tester");
+
         assertTrue( thirdTestJob.getEmployer() instanceof Employer);
         assertEquals(thirdTestJob.getEmployer().getValue(),"ACME");
 
